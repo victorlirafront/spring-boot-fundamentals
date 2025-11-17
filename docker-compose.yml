@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  product-db:
+    image: postgres:16
+    container_name: product-db
+    environment:
+      POSTGRES_DB: productdb
+      POSTGRES_USER: devuser
+      POSTGRES_PASSWORD: devpass
+    ports:
+      - "5432:5432"
+    volumes:
+      - product-db-data:/var/lib/postgresql/data
+    networks:
+      - postgres-network
+  zipkin:
+    image: openzipkin/zipkin
+    container_name: zipkin
+    ports:
+      - "9411:9411"
+    networks:
+      - zipkin-network
+
+volumes:
+  product-db-data:
+
+networks:
+  postgres-network:
+    driver: bridge
+  zipkin-network:
+    driver: bridge

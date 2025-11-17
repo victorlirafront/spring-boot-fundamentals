@@ -1,0 +1,21 @@
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+server:
+  port: 8070
+spring:
+  application:
+    name: stock
+
+application:
+  config:
+    product-service-url: http://localhost:8090/api
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
